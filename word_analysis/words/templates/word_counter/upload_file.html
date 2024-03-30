@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Загрузка файла</title>
+</head>
+<body>
+    <h1>Загрузка текстового файла</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file">
+        <br><br>
+        <input type="submit" value="Загрузить">
+    </form>
+    {% if data %}
+    <h2>Результаты обработки файла:</h2>
+    <table>
+        <tr>
+            <th>Слово</th>
+            <th>TF</th>
+            <th>IDF</th>
+        </tr>
+        {% for word in data %}
+        <tr>
+            <td>{{ word.word }}</td>
+            <td>{{ word.tf }}</td>
+            <td>{{ word.idf }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>
